@@ -1,5 +1,6 @@
 # Shift_Rotator
  A Visual Basic script that generate rotation work schedules 
+![image](https://user-images.githubusercontent.com/59659182/192485268-dfa69fbb-965e-41ed-a2ae-2bcbefe5e1f5.png)
 
 
 How to use : 
