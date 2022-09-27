@@ -2,20 +2,21 @@ Attribute VB_Name = "Module1"
 
 Option Explicit
 
-Dim RotationArray() As String
+Dim RotationArray()   As String
 Dim NamesArray()
 Dim reset             As Integer
 Dim NumberOfJobs      As Integer
 Dim NumberOfEmployees As Integer
-Dim N                 As Integer
-Dim m                 As Integer
-Dim k                 As Integer
-Dim counter           As Integer
-
 ' For Archipelagos
 ' March 2020
 ' Kamil Begny
 ' kamil.begny@gmail.com
+
+
+Dim N                 As Integer
+Dim m                 As Integer
+Dim k                 As Integer
+Dim counter           As Integer
 
 Sub RandomizeSchedule()
     Dim TempArray   As Variant
@@ -45,7 +46,7 @@ Sub RandomizeSchedule()
                 ' Select person for shift
                 SelectEmployee
                 
-                'We randomly pick within the first quarter of the remaining people in the array (For a bit of randomness and mixing)
+                ' We randomly pick within the first quarter of the remaining people in the array (for a bit of randomness and mixing)
                 Randomize
                 random_pick = Int((UBound(NamesArray) \ 4) * Rnd) + 1
                             
@@ -67,7 +68,7 @@ Function SelectEmployee()
     Dim h           As Integer
     Dim i           As Integer
  
-    ' Get rid of people who already worked that shift this week, except first row to save time
+    ' We avoid duplicate shifts (weekly) by deleting people who already worked a specific shift this week, except first row to save time
     If Not (k = 1) Then
     
         ' Dinner
@@ -135,7 +136,7 @@ Function SelectEmployee()
         End If
     End If
     
-    ' Get rid of people who are already working today, except first column
+    ' We avoid double shift (daily) by deleting people who are already working today, except first column
     If Not (N = 1) Then
         For Each Itemk In Application.Index(RotationArray, k, 0)
             res = Application.Match(Itemk, NamesArray, False)
@@ -150,7 +151,7 @@ Function SelectEmployee()
     ' Recreate array and get rid of empty " " (deleted people)
     TempArray = Split(Application.WorksheetFunction.Trim(Join(NamesArray, " ")))
  
-    ' If array is empty, there is no solution so we force someone
+    ' If array is empty, there is no solution so we force a duplicate shift (weekly) for someone
     If UBound(TempArray) = -1 Then
             ForceSelect
     Else
@@ -199,14 +200,14 @@ Function ForceSelect()
 End Function
 
 Sub CountPreviousShifts()
-    Dim Arr() As Variant
-    Dim ArrTemp As Variant
-    Dim Temp1 As Variant
-    Dim Temp2 As Variant
-    Dim pastShift As Variant
-    Dim i As Long
-    Dim j As Long
-    Dim ii As Long
+    Dim Arr()       As Variant
+    Dim ArrTemp     As Variant
+    Dim Temp1       As Variant
+    Dim Temp2       As Variant
+    Dim pastShift   As Variant
+    Dim i           As Long
+    Dim j           As Long
+    Dim ii          As Long
 
     ReDim NamesArray(1 To NumberOfEmployees)
     
