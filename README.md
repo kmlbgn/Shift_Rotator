@@ -1,5 +1,5 @@
 # Shift_Rotator
- A little excel sheet that that generates rotating work schedules
+ A little excel sheet that generates rotating work schedules for interns
  
 ![image](https://user-images.githubusercontent.com/59659182/192485268-dfa69fbb-965e-41ed-a2ae-2bcbefe5e1f5.png)
 
